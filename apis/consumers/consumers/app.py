@@ -47,7 +47,7 @@ def delete_user():
     }
     return response
 
-@app.route('/consumers/person', methods=['GET'])
+@app.route('/consumers/persons', methods=['GET'])
 def get_person():
     response = {
         "statusCode": 200,
@@ -55,3 +55,57 @@ def get_person():
     }
     return response
 
+@app.route('/consumers/person/{id}', methods=['GET'])
+def get_person():
+    response = {
+        "statusCode": 200,
+        "body": {id: {"name": "usuario1", "telefone": "47999999999"}}
+    }
+    return response
+
+@app.route('/consumers/company',  methods=['POST'])
+def create_user():
+    requests_params = app.current_request.json_body
+    response = {
+        "statusCode": 200,
+        "body": f"Empresa {requests_params} criada com sucesso!"
+    }
+    return response
+
+
+@app.route('/consumers/company',  methods=['PUT'])
+def update_user():
+    requests_params = app.current_request.json_body
+    response = {
+        "statusCode": 200,
+        "body": f"Empresa {requests_params} atualizada com sucesso!"
+    }
+    return response
+
+
+@app.route('/consumers/company',  methods=['DELETE'])
+def delete_user():
+    requests_params = app.current_request.json_body
+    response = {
+        "statusCode": 200,
+        "body": f"Empresa {requests_params} deletada com sucesso!"
+    }
+    return response
+
+
+@app.route('/consumers/companies',  methods=['GET'])
+def get_companies():
+    response = {
+        "statusCode": 200,
+        "body": companies
+    }
+    return response
+
+
+@app.route('/consumers/company/{id}',  methods=['GET'])
+def get_company(id):
+    response = {
+        "statusCode": 200,
+        "body": {id: {"name": "empresa1", "telefone": "47999999999"}}
+    }
+    return response
