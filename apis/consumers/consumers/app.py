@@ -1,6 +1,7 @@
 from chalice import Chalice
 
 app = Chalice(app_name='consumers')
+
 users = {
             "users": [
                 {"name": "usuário1", "phone": "47999999999"},
@@ -13,15 +14,14 @@ users = {
 companies = {
                 "companies": [
                     {"name": "empresa1", "telefone": "47999999999"},
-                    {"name": "empresa2", "telefone": "37999999999"},
-                    {"name": "empresa3", "telefone": "27999999999"},
+                    {"name": "empresa2", "telefone": "47999999999"},
+                    {"name": "empresa3", "telefone": "47999999999"},
                 ]
             }
 
 
-@app.route('/consumers/person', methods=['POST'])
+@app.route('/consumers/person', methods = ['POST'])
 def create_user():
-    # 
     requests_params = app.current_request.json_body
     response = {
         "statusCode": 200,
@@ -29,39 +29,45 @@ def create_user():
     }
     return response
 
-@app.rout('/consumers/person', methods=['PUT'])
+
+@app.route('/consumers/person',  methods=['PUT'])
 def update_user():
-    resquest_params = app.current_request.json_body
+    requests_params = app.current_request.json_body
     response = {
         "statusCode": 200,
-        "body": f"Usuário {resquest_params} atualizado com sucesso!"    
+        "body": f"Usuário {requests_params} atualizado com sucesso!"
     }
     return response
 
-@app.route('/consumers/person', methods=['DELETE'])
+
+@app.route('/consumers/person',  methods=['DELETE'])
 def delete_user():
-    resquest_params = app.current_request.json_body
+    requests_params = app.current_request.json_body
     response = {
         "statusCode": 200,
-        "body": f"Usuário {resquest_params} deletado com sucesso!"    
+        "body": f"Usuário {requests_params} deletado com sucesso!"
     }
     return response
 
-@app.route('/consumers/persons', methods=['GET'])
-def get_person():
+
+@app.route('/consumers/persons',  methods=['GET'])
+def get_persons():
     response = {
         "statusCode": 200,
         "body": users
     }
     return response
 
-@app.route('/consumers/person/{id}', methods=['GET'])
-def get_person():
+
+@app.route('/consumers/person/{id}',  methods=['GET'])
+def get_person(id):
     response = {
         "statusCode": 200,
-        "body": {id: {"name": "usuario1", "telefone": "47999999999"}}
+        "body": {id: {"name": "usuário1", "telefone": "47999999999"}}
     }
     return response
+
+
 
 @app.route('/consumers/company',  methods=['POST'])
 def create_user():
